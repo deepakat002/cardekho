@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div style="color:blue; float:centre;">
+        <form action="{{ url_for('predict')}}" method="post">
+            <h2 style="font-family:Calibri; color:#DE1C25; font-size: 55px;">FIND YOUR VEHICLE'S SELLING PRICE</h2>
+            
+            <h3>Vehicle model name </h3><br>
+            <select style="font-family:Calibri; font-size: 16px;" name="vehicle_name" id="car" required="required">
+                <option value="fortuner"  >Fortuner</option>
+                <option value="innova">Innova</option>
+                <option value="baleno">Baleno</option>
+                <option value="corolla">Corolla</option>
+                <option value="land cruiser">Land Cruiser</option>
+                <option value="ritz">ritzr</option>
+                <option value="ciaz">ciaz</option>
+                <option value="swift">swift</option>
+                <option value="vitara brezza">vitara brezza</option>
+                <option value="s cross">s cross</option>
+                <option value="ertiga">ertiga</option>
+                <option value="corolla altis">corolla altis</option>
+                <option value="Royal Enfield Thunder 500">Royal Enfield Thunder 500</option>
+                <option value="KTM RC200">KTM RC200</option>
+                <option value="UM Renegade Mojave">UM Renegade Mojave</option>
+                <option value="Bajaj Dominar 400">Bajaj Dominar 400</option>
+                <option value="KTM RC390">KTM RC390</option>
+                <option value="Royal Enfield Classic 350">Royal Enfield Classic 350</option>
+                <option value="Yamaha FZ S V 2.0">Yamaha FZ S V 2.0</option>
+                <option value="Honda CBR 150">Honda CBR 150</option>
+                <option value="Yamaha FZ 16">Yamaha FZ 16</option>
+                <option value="Bajaj Avenger 220 dtsi">Bajaj Avenger 220 dtsi</option>
+                <option value="Bajaj Pulsar  NS 200">Bajaj Pulsar  NS 200r</option>
+                <option value="Honda Karizma">Honda Karizma</option>
+                <option value="TVS Jupyter">TVS Jupyter</option>
+                <option value="Hero Hunk">Hero Hunk</option>
+
+            </select>
+            
+            <h3 >Year of manufacture  </h3><br><br>
+            <input id="year" name="Year" type="number " required="required">
+            
+            <h3>What is the current Showroom Price (in lakhs)? </h3><br><br>
+            <input id="showroom" name="Present_Price" required="required">
+            
+            <h3>How many kilometers driven ?</h3><br><br><input id="kms" name="Kms_Driven" required="required">
+            
+            <h3>Number of previous owners (0 or 1 or 3) ?</h3><br><br><input id="owner" name="Owner" required="required">
+            
+            <h3>What is the fuel type ?</h3><br><br>
+            <select style="font-family:Calibri; font-size: 16px;" name="Fuel_Type" id="fuel" required="required">
+                <option value="Petrol">Petrol</option>
+                <option value="Diesel">Diesel</option>
+                <option value="CNG">CNG</option>
+            </select>
+            
+            <h3>Are you a Dealer or Individual</h3><br><br>
+            <select style="font-family:Calibri; font-size: 16px;" name="Seller_Type" id="dealer" required="required">
+                <option value="Dealer">Dealer</option>
+                <option value="Individual">Individual</option>
+            </select>
+            
+            <h3>Transmission type</h3><br><br>
+            <select style="font-family:Calibri; font-size: 16px;" name="Transmission" id="transmission" required="required">
+                <option value="Mannual" >Manual Car</option>
+                <option value="Automatic">Automatic Car</option>
+            </select>
+            
+            <br><br><button style="font-family:Calibri; font-size: 16px;" id="sub" type="submit ">Find Selling Price</button>
+            <h4 style="color:blue; float:right; color:#12DA9D; font-size: 30px;">{{ prediction_text }}</h4>
+<!--            <h4>{{ prediction_text }}</h4>-->
+
+
+
+
+        </form>
+
+    </div>
+    
+<!--
+    <div style="color:blue; float:right; width:300px; color:#12DA9D; font-size: 30px;">
+        <h4>{{ prediction_text }}</h4>
+    
+    </div>
+-->
+    
+
+    
+
+
+    <style>
+        body {
+            background-color: #1C1B1A;
+            text-align: center;
+            padding: 0px;
+        }
+        
+/*
+        #pred_s {
+            position: fixed;
+                right:2500px;
+                top:1000px;
+                font-family:Calibri;
+                color:#12DA9D; 
+                font-size: 30px;                   
+        }
+                
+*/
+
+        
+        h3 {
+            position: absolute;
+                left:10 px;
+                top:100 px;
+                font-family:Calibri;
+                color:#12DA9D; 
+                font-size: 20px;                   
+        }
+        
+        #car {
+            width: 185px;
+            height: 25px;
+            text-align: center;
+            font-size: 20px;
+        }
+        
+        #car:hover {
+            background-color: coral;
+        }
+        
+        #year {
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+        }
+        
+        #showroom{
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+        }
+        
+        #research {
+            font-size: 18px;
+            width: 100px;
+            height: 23px;
+            top: 23px;
+        }
+        
+        #kms {
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+        }
+        
+        #owner{
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+        }
+        
+        #fuel {
+            width: 185px;
+            height: 25px;
+            text-align: center;
+            font-size: 20px;
+        }
+        
+        #fuel:hover {
+            background-color: coral;
+        }
+        
+        #dealer {
+            width: 185px;
+            height: 25px;
+            text-align: center;
+            font-size: 18px;
+        }
+        
+        #dealer:hover {
+            background-color: coral;
+        }
+        
+        
+        #transmission {
+            width: 185px;
+            height: 25px;
+            text-align: center;
+            font-size: 18px;
+        }
+        
+        #transmission:hover {
+            background-color: coral;
+        }
+
+
+
+        #sub {
+            width: 120px;
+            height: 43px;
+            text-align: center;
+            font-size: 18px;
+            background-color: #25BD56;
+        }
+        
+        #sub:hover {
+            background-color: darkcyan;
+        }
+        
+   
+
+    </style>
+</body>
+
+</html>
